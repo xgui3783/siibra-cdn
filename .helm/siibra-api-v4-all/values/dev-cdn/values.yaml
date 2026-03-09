@@ -8,9 +8,9 @@ envObj:
     https://data-proxy.ebrains.eu::https://siibra-cdn.examcopedia.club/dp-eb-eu
 
 volumes: 
-  - name: log-volume
-    persistentVolumeClaim:
-      claimName: log-volume-claim
+  # - name: log-volume
+  #   persistentVolumeClaim:
+  #     claimName: log-volume-claim
   - name: data-volume
     persistentVolumeClaim:
       claimName: data-volume-claim
@@ -18,8 +18,8 @@ volumes:
 volumeMounts: 
   - mountPath: /siibra-api-volume
     name: data-volume
-  - mountPath: /siibra_api_logs
-    name: log-volume
+  # - mountPath: /siibra_api_logs
+  #   name: log-volume
 
 
 resources:
