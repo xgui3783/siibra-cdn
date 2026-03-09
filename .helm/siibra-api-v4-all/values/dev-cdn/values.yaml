@@ -7,19 +7,19 @@ envObj:
     https://neuroglancer.humanbrainproject.eu::https://siibra-cdn.examcopedia.club/ng-hbp-eu
     https://data-proxy.ebrains.eu::https://siibra-cdn.examcopedia.club/dp-eb-eu
 
-volumes:
-  - name: log-volume
-    persistentVolumeClaim:
-      claimName: log-volume-claim
-  - name: data-volume
-    persistentVolumeClaim:
-      claimName: data-volume-claim
+volumes: []
+  # - name: log-volume
+  #   persistentVolumeClaim:
+  #     claimName: log-volume-claim
+  # - name: data-volume
+  #   persistentVolumeClaim:
+  #     claimName: data-volume-claim
 
-volumeMounts: 
-  - mountPath: /siibra-api-volume
-    name: data-volume
-  - mountPath: /siibra_api_logs
-    name: log-volume
+volumeMounts: []
+  # - mountPath: /siibra-api-volume
+  #   name: data-volume
+  # - mountPath: /siibra_api_logs
+  #   name: log-volume
 
 
 resources:

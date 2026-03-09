@@ -44,9 +44,15 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          envFrom:
-            - configMapRef:
-                name: sapi-cdn-configmap
+          # envFrom:
+          #   - configMapRef:
+          #       name: sapi-cdn-configmap
+          command:
+          - tail
+          args:
+          - -f
+          - /dev/null
+
           {{- with .Values.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
