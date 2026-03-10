@@ -1,7 +1,7 @@
 
 # n.b. only single line env var is supported
 envObj:
-  SKIP_CACHEINIT_MAINTENANCE: "1"
+  SKIP_CACHEINIT_MAINTENANCE: "true"
   SIIBRA_API_LOG_DIR: /siibra_api_logs/sapi/0.3.33
   SIIBRA_CACHEDIR:  /siibra-api-volume/sapi/0.3.33
 
