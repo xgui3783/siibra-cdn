@@ -32,6 +32,28 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: {{ .Chart.Name }}-init
+          envFrom:
+            - configMapRef:
+                name: sapi-cdn-configmap
+          env:
+            {{- range $key, $val := .Values.envObj }}
+            - name: {{ $key }}
+              value: {{ $val }}
+            {{- end }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}-worker"
+          imagePullPolicy: Always
+          command:
+            - python
+          args:
+            - -c
+            - import siibra; siibra.warm_cache()
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
@@ -44,14 +66,14 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          # envFrom:
-          #   - configMapRef:
-          #       name: sapi-cdn-configmap
-          command:
-          - tail
-          args:
-          - -f
-          - /dev/null
+          envFrom:
+            - configMapRef:
+                name: sapi-cdn-configmap
+          env:
+            {{- range $key, $val := .Values.envObj }}
+            - name: {{ $key }}
+              value: {{ $val }}
+            {{- end }}
 
           {{- with .Values.resources }}
           resources:

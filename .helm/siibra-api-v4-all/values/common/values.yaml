@@ -129,14 +129,14 @@ resources: {}
   #   memory: 128Mi
 
 # This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
-# livenessProbe:
-#   initialDelaySeconds: 2
-#   periodSeconds: 10
-#   timeoutSeconds: 4
-#   failureThreshold: 12
-#   httpGet:
-#     path: /
-#     port: http
+livenessProbe:
+  initialDelaySeconds: 2
+  periodSeconds: 10
+  timeoutSeconds: 4
+  failureThreshold: 12
+  httpGet:
+    path: /
+    port: http
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
@@ -165,4 +165,5 @@ tolerations: []
 
 affinity: {}
 
+# n.b. only single line variables are supported
 envObj: {}
