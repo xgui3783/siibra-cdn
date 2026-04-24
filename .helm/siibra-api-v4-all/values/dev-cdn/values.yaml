@@ -14,21 +14,6 @@ image:
   tag: "0.3.33"
   spec: "0.3.33"
 
-volumes: 
-  - name: log-volume
-    persistentVolumeClaim:
-      claimName: log-volume-claim
-  - name: data-volume
-    persistentVolumeClaim:
-      claimName: data-volume-claim
-
-volumeMounts: 
-  - mountPath: /siibra-api-volume
-    name: data-volume
-  - mountPath: /siibra_api_logs
-    name: log-volume
-
-
 resources:
   limits:
     cpu: "2"

@@ -146,18 +146,24 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-# Additional volumes on the output Deployment definition.
-volumes: []
-  # - name: foo
-  #   secret:
-  #     secretName: mysecret
-  #     optional: false
+volumes: 
+  - name: log-volume
+    persistentVolumeClaim:
+      claimName: log-volume-claim
+  - name: data-volume
+    persistentVolumeClaim:
+      claimName: data-volume-claim
+  - name: tmp-volume
+    persistentVolumeClaim:
+      claimName: tmp-volume-claim
 
-# Additional volumeMounts on the output Deployment definition.
-volumeMounts: []
-  # - name: foo
-  #   mountPath: "/etc/foo"
-  #   readOnly: true
+volumeMounts: 
+  - mountPath: /siibra-api-volume
+    name: data-volume
+  - mountPath: /siibra_api_logs
+    name: log-volume
+  - mountPath: /tmp
+    name: tmp-volume
 
 nodeSelector: {}
 
