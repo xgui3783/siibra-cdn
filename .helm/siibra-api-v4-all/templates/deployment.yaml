@@ -49,6 +49,10 @@ spec:
           args:
             - -c
             - import siibra; siibra.warm_cache()
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
